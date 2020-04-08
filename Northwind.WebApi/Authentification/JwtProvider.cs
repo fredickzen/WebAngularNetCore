@@ -19,7 +19,10 @@ namespace Northwind.WebApi.Authentification
 
         public JwtProvider(string issuer, string audience, string keyName) 
         {
-            var parameters = new CspParameters() { KeyContainerName =keyName };
+            var parameters = new CspParameters() { 
+                KeyContainerName =keyName,
+                Flags = CspProviderFlags.UseMachineKeyStore    
+            };
             var provider = new RSACryptoServiceProvider(2048, parameters);
             _key = new RsaSecurityKey(provider);
             _algoritm = SecurityAlgorithms.RsaSha256Signature;
