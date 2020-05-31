@@ -5,6 +5,7 @@ using Northwind.UnitOfWork;
 
 namespace Northwind.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/Customer")]
     [Authorize]
     public class CustomerController : Controller

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 using Northwind.UnitOfWork;
+using Northwind.WebApi.Models;
 
 namespace Northwind.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/Supplier")]
     [Authorize]
     public class SupplierController : Controller
@@ -25,13 +27,13 @@ namespace Northwind.WebApi.Controllers
         {
             return Ok(_unitOfWork.Supplier.GetById(id));
         }
-        [HttpGet]
-        [Route("GetPaginateSupplier/{page:int}/{rows:int}")]
-        public IActionResult GetPaginateSupplier(int page, int rows) 
+        [HttpPost]
+        [Route("GetPaginateSupplier")]
+        public IActionResult GetPaginateSupplier([FromBody] GetPaginateSupplier request) 
         {
             // Para probar errores
             //throw new Exception("Error interno");
-            return Ok(_unitOfWork.Supplier.SupplierPagedList(page,rows));
+            return Ok(_unitOfWork.Supplier.SupplierPagedList(request.Page,request.Rows, request.SearchTerm));
         }
         [HttpPost]
         public IActionResult Post([FromBody]Supplier supplier)

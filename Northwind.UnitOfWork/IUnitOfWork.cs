@@ -7,5 +7,6 @@ namespace Northwind.UnitOfWork
         ICustomerRepository Costumer { get; }
         IUserRepository User { get; }
         ISupplierRepository Supplier { get; }
+        IOrderRepository Order { get; }
     }
 }

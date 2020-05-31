@@ -9,6 +9,7 @@ using Northwind.WebApi.Authentification;
 
 namespace Northwind.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/token")]
     public class TokenController : Controller
     {

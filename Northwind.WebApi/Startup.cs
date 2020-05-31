@@ -57,6 +57,9 @@ namespace Northwind.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors( option => {
+                option.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+            });
             app.UseAuthentication();
 
             app.ConfigureExceptionHandler();

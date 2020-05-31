@@ -17,14 +17,14 @@ namespace Northwind.DataAccess
         
         }
 
-        public IEnumerable<Customer> CustomerPagedList(int page, int rows)
+        public IEnumerable<CustomerList> CustomerPagedList(int page, int rows)
         {
             var parameter = new DynamicParameters();
             parameter.Add("@page", page);
             parameter.Add("@rows", rows);
             using (var connection = new SqlConnection(_connectionString))
             {
-                return connection.Query<Customer>("dbo.CustomerPagedList",parameter, commandType: System.Data.CommandType.StoredProcedure);
+                return connection.Query<CustomerList>("dbo.CustomerPagedList",parameter, commandType: System.Data.CommandType.StoredProcedure);
             }
         }
     }
